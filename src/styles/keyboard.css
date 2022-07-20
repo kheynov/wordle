@@ -3,22 +3,25 @@
 	justify-items: center;
 	align-items: center;
 	margin-top: 30px;
-}
-
-.key {
-	min-width: 32px;
-	min-height: 56px;
-	padding: 10px 5px;
-	margin: 2.5px;
-	border-radius: 5px;
-	font-weight: 700;
-    font-family: "Inter";
-    text-transform: uppercase;
+	height: 200px;
 }
 
 .keyboard-line {
 	display: flex;
 	justify-content: center;
-	justify-items: center;
-	align-items: center;
+	width: 100%;
+	margin: 0 auto 8px;
+	touch-action: manipulation;
+}
+
+.key {
+	min-width: 22px;
+	min-height: 44px;
+	padding: 0;
+	margin: 2.5px;
+	border-radius: 5px;
+	font-weight: 700;
+	font-family: "Inter";
+	text-transform: uppercase;
+    user-select: none;
 }

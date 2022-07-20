@@ -1,0 +1,26 @@
+header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	justify-items: center;
+	text-align: center;
+	padding: 0 auto;
+	margin-bottom: 30px;
+	border-bottom: 1px solid #ccc;
+}
+
+h1 {
+	padding: 5px 0;
+	font-family: "Inter";
+}
+
+button {
+	border: none;
+	cursor: pointer;
+}
+
+#change-lang {
+	width: 30px;
+	height: 30px;
+	background: none;
+}

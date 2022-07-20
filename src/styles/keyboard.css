@@ -1,0 +1,24 @@
+#keyboard {
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+	margin-top: 30px;
+}
+
+.key {
+	min-width: 32px;
+	min-height: 56px;
+	padding: 10px 5px;
+	margin: 2.5px;
+	border-radius: 5px;
+	font-weight: 700;
+    font-family: "Inter";
+    text-transform: uppercase;
+}
+
+.keyboard-line {
+	display: flex;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+}

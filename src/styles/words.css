@@ -1,0 +1,22 @@
+.cells {
+	display: flex;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+	margin: auto 0;
+}
+
+.cell {
+	width: 16%;
+	height: 0;
+	padding-bottom: 16%;
+	border: 1px solid #ccc;
+	margin: 2.5px;
+}
+
+.word {
+	display: flex;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+}

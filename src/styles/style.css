@@ -19,6 +19,10 @@ body {
 	width: 480px;
 }
 
+svg {
+	pointer-events: none;
+}
+
 @font-face {
 	font-family: "Inter";
 	src: url("../assets/fonts/Inter/Inter-VariableFont.ttf") format("truetype");

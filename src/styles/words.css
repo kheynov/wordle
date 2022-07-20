@@ -9,9 +9,19 @@
 .cell {
 	min-width: 60px;
 	min-height: 60px;
-	padding-bottom: 16%;
 	border: 1px solid #ccc;
 	margin: 2.5px;
+	top: 50%;
+	font-family: "Inter";
+	font-weight: bold;
+	justify-content: center;
+	justify-items: center;
+	text-align: center;
+	align-items: center;
+	font-size: 25pt;
+	text-transform: uppercase;
+	display: flex;
+	user-select: none;
 }
 
 .word {

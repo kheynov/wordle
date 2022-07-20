@@ -12,12 +12,14 @@ header {
 h1 {
 	padding: 5px 0;
 	font-family: "Inter";
-    font-size: 2.5rem;
+	font-size: 2.5rem;
+	user-select: none;
 }
 
 button {
 	border: none;
 	cursor: pointer;
+	user-select: none;
 }
 
 #change-lang {

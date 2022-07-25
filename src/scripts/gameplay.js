@@ -1,7 +1,7 @@
 const keys = document.getElementsByClassName("key");
-const attempts = [[]];
 
 export default function playGame(lang) {
+	const attempts = [[]];
 	let row = 0;
 	console.log(lang);
 	// let word;

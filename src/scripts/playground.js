@@ -33,9 +33,9 @@ function renderCells() {
 	const cells = document.querySelector("#cells");
 	let rows = "";
 	for (let i = 0; i < 6; i++) {
-		let row = `<div class="word">`;
+		let row = "<div class=\"word\">";
 		for (let j = 0; j < 5; j++) {
-			row += `<div class="cell"></div>`;
+			row += "<div class=\"cell\"></div>";
 		}
 		row += "</div>";
 		rows += row;

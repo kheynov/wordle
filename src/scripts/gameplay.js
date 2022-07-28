@@ -18,7 +18,9 @@ export default function playGame(lang) {
 						const options = { method: "POST" };
 
 						fetch(
-							`https://wordle.kheynov.ru/api/word/check?word=${attempts[row].join("")}&lang=${lang}`,
+							`https://wordle.kheynov.ru/api/word/check?word=${attempts[
+								row
+							].join("")}&lang=${lang}`,
 							options
 						)
 							.then((response) => response.json())
@@ -115,28 +117,28 @@ function color(state, attempts) {
 			child = wordsOnBoard[i].children[j];
 			key = document.querySelector(`[data-key = "${attempts[i][j]}"]`);
 			switch (state[i][j]) {
-			case "X":
-				child.classList.add("correct", "used");
-				key.classList.add("correct");
-				if (key.classList.contains("contains")) {
-					key.classList.remove("contains");
-				}
-				break;
-			case "C":
-				child.classList.add("contains", "used");
-				if (!key.classList.contains("correct")) {
-					key.classList.add("contains");
-				}
-				break;
-			default:
-				child.classList.add("wrong", "used");
-				if (
-					!key.classList.contains("correct") &&
-					!key.classList.contains("contains")
-				) {
-					key.classList.add("wrong");
-				}
-				break;
+				case "X":
+					child.classList.add("correct", "used");
+					key.classList.add("correct");
+					if (key.classList.contains("contains")) {
+						key.classList.remove("contains");
+					}
+					break;
+				case "C":
+					child.classList.add("contains", "used");
+					if (!key.classList.contains("correct")) {
+						key.classList.add("contains");
+					}
+					break;
+				default:
+					child.classList.add("wrong", "used");
+					if (
+						!key.classList.contains("correct") &&
+						!key.classList.contains("contains")
+					) {
+						key.classList.add("wrong");
+					}
+					break;
 			}
 		}
 	}

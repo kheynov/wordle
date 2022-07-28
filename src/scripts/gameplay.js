@@ -1,18 +1,32 @@
 export default function playGame(lang) {
-	const keys = document.getElementsByClassName("key");
-	const attempts = [[]];
-	const state = [];
-	let row = 0;
-	let data;
 	getData(lang)
-		.then((response) => (data = response))
+		.then((response) => gameplay(lang, response))
 		.catch((err) => console.error(err));
+}
 
+function gameplay(lang, data) {
+	const keys = document.getElementsByClassName("key");
+	let attempts = [[]];
+	let state = [];
+	let row = 0;
+	if (data.word === localStorage.getItem(`${lang}Word`))
+	{
+		attempts = JSON.parse(localStorage.getItem(`${lang}Attempts`));
+		state = JSON.parse(localStorage.getItem(`${lang}State`));
+		row = attempts.length - 1;
+		renderAttempts(attempts);
+		color(state, attempts);
+	} else {
+		localStorage.setItem(`${lang}Word`, data.word);
+	}
 	// listening key press
 	for (let i = 0; i < keys.length; i++) {
 		keys[i].onclick = ({ target }) => {
 			const letter = target.getAttribute("data-key");
-			if (row < 6 && (!state[row - 1] || state[row - 1].join("") !== "XXXXX")) {
+			if (
+				row < 6 &&
+				(!state[row - 1] || state[row - 1].join("") !== "XXXXX")
+			) {
 				if (letter === ">>") {
 					if (attempts[row].length === 5) {
 						const options = { method: "POST" };
@@ -25,7 +39,6 @@ export default function playGame(lang) {
 						)
 							.then((response) => response.json())
 							.then((response) => {
-								console.log(response.correct);
 								if (response.correct) {
 									state.push(
 										check(
@@ -36,7 +49,14 @@ export default function playGame(lang) {
 									color(state, attempts);
 									row++;
 									attempts.push([]);
-									console.log(state);
+									localStorage.setItem(
+										`${lang}Attempts`,
+										JSON.stringify(attempts)
+									);
+									localStorage.setItem(
+										`${lang}State`,
+										JSON.stringify(state)
+									);
 								}
 							})
 							.catch((err) => console.error(err));
@@ -140,6 +160,16 @@ function color(state, attempts) {
 					}
 					break;
 			}
+		}
+	}
+}
+
+function renderAttempts(attempts) {
+	const wordsOnBoard = document.querySelectorAll(".word");
+	for (let i = 0; i < attempts.length-1; i++) {
+		let child = wordsOnBoard[i];
+		for (let j = 0; j < attempts[0].length; j++) {
+			child.children[j].innerHTML = attempts[i][j];
 		}
 	}
 }

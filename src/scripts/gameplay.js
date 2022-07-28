@@ -12,7 +12,7 @@ export default function playGame(lang) {
 	for (let i = 0; i < keys.length; i++) {
 		keys[i].onclick = ({ target }) => {
 			const letter = target.getAttribute("data-key");
-			if (row < 6) {
+			if (row < 6 && (!state[row - 1] || state[row - 1].join("") !== "XXXXX")) {
 				if (letter === ">>") {
 					if (attempts[row].length === 5) {
 						const options = { method: "POST" };

@@ -15,11 +15,29 @@ export default function playGame(lang) {
 			if (row < 6) {
 				if (letter === ">>") {
 					if (attempts[row].length === 5) {
-						state.push(check(attempts[row], data.word.split("")));
-						color(state, attempts);
-						row++;
-						attempts.push([]);
-						console.log(state);
+						const options = { method: "POST" };
+
+						fetch(
+							`https://wordle.kheynov.ru/api/word/check?word=${attempts[row].join("")}&lang=${lang}`,
+							options
+						)
+							.then((response) => response.json())
+							.then((response) => {
+								console.log(response.correct);
+								if (response.correct) {
+									state.push(
+										check(
+											attempts[row],
+											data.word.split("")
+										)
+									);
+									color(state, attempts);
+									row++;
+									attempts.push([]);
+									console.log(state);
+								}
+							})
+							.catch((err) => console.error(err));
 					}
 				} else if (letter === "backspace") {
 					attempts[row].pop();
@@ -112,7 +130,10 @@ function color(state, attempts) {
 				break;
 			default:
 				child.classList.add("wrong", "used");
-				if (!key.classList.contains("correct") && !key.classList.contains("contains")) {
+				if (
+					!key.classList.contains("correct") &&
+					!key.classList.contains("contains")
+				) {
 					key.classList.add("wrong");
 				}
 				break;

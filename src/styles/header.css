@@ -26,4 +26,12 @@ button {
 	width: 30px;
 	height: 30px;
 	background: none;
+	margin-left: 10px;
+}
+
+#color-mode {
+	width: 35px;
+	height: 35px;
+	background: none;
+	margin-right: 10px;
 }

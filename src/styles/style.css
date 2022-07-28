@@ -23,6 +23,15 @@ svg {
 	pointer-events: none;
 }
 
+.dark {
+	background-color: #000000;
+	color: #fff;
+}
+
+.dark header svg {
+	color: #FFF;
+}
+
 @font-face {
 	font-family: "Inter";
 	src: url("../assets/fonts/Inter/Inter-VariableFont.ttf") format("truetype");

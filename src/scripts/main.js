@@ -15,3 +15,7 @@ document.querySelector("#change-lang").addEventListener("click", () => {
 	playground.render(lang);
 	playGame(lang);
 });
+
+document.querySelector("#color-mode").addEventListener("click", () => {
+	playground.setTheme();
+});

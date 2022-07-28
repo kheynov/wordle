@@ -16,6 +16,7 @@ export default function playGame(lang) {
 				if (letter === ">>") {
 					if (attempts[row].length === 5) {
 						state.push(check(attempts[row], data.word.split("")));
+						color(state, attempts);
 						row++;
 						attempts.push([]);
 						console.log(state);
@@ -69,7 +70,7 @@ function check(guess, correct) {
 	}
 
 	for (let i = 0; i < 5; i++) {
-		let index = word.findIndex(char => char === attempt[i]);
+		let index = word.findIndex((char) => char === attempt[i]);
 		if (attempt[i] !== "" && index !== -1) {
 			word[index] = "";
 			attempt[i] = "";
@@ -84,4 +85,38 @@ function check(guess, correct) {
 	});
 
 	return state;
+}
+
+function color(state, attempts) {
+	let child;
+	let key;
+	const wordsOnBoard = document.querySelectorAll(".word");
+
+	for (let i = 0; i < state.length; i++) {
+		for (let j = 0; j < state[0].length; j++) {
+			child = wordsOnBoard[i].children[j];
+			key = document.querySelector(`[data-key = "${attempts[i][j]}"]`);
+			switch (state[i][j]) {
+			case "X":
+				child.classList.add("correct", "used");
+				key.classList.add("correct");
+				if (key.classList.contains("contains")) {
+					key.classList.remove("contains");
+				}
+				break;
+			case "C":
+				child.classList.add("contains", "used");
+				if (!key.classList.contains("correct")) {
+					key.classList.add("contains");
+				}
+				break;
+			default:
+				child.classList.add("wrong", "used");
+				if (!key.classList.contains("correct") && !key.classList.contains("contains")) {
+					key.classList.add("wrong");
+				}
+				break;
+			}
+		}
+	}
 }

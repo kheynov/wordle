@@ -30,3 +30,19 @@
 	justify-items: center;
 	align-items: center;
 }
+
+.used {
+	color: #FFF;
+}
+
+.contains {
+	background-color: #c8b653;
+}
+
+.correct {
+	background-color: #6ca965;
+}
+
+.wrong {
+	background-color: #787c7f;
+}

@@ -137,10 +137,11 @@ function color(state, attempts) {
 		for (let j = 0; j < state[0].length; j++) {
 			child = wordsOnBoard[i].children[j];
 			key = document.querySelector(`[data-key = "${attempts[i][j]}"]`);
+			child.style.animationDelay = `${(j * (i+1))*100}ms`;
 			switch (state[i][j]) {
 				case "X":
 					child.classList.add("correct", "used");
-					child.style.animationDelay = `${(j * (i+1))*100}ms`;
+					
 					key.classList.add("correct");
 					if (key.classList.contains("contains")) {
 						key.classList.remove("contains");
@@ -148,14 +149,12 @@ function color(state, attempts) {
 					break;
 				case "C":
 					child.classList.add("contains", "used");
-					child.style.animationDelay = `${(j * (i+1))*100}ms`;
 					if (!key.classList.contains("correct")) {
 						key.classList.add("contains");
 					}
 					break;
 				default:
 					child.classList.add("wrong", "used");
-					child.style.animationDelay = `${(j * (i+1))*100}ms`;
 					if (
 						!key.classList.contains("correct") &&
 						!key.classList.contains("contains")

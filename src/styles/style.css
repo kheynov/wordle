@@ -1,6 +1,7 @@
 @import url("./header.css");
 @import url("./words.css");
 @import url("./keyboard.css");
+@import url("./share.css");
 
 * {
 	margin: 0;
@@ -29,7 +30,7 @@ svg {
 }
 
 .dark header svg {
-	color: #FFF;
+	color: #fff;
 }
 
 @font-face {

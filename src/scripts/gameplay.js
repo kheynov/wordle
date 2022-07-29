@@ -20,14 +20,13 @@ function gameplay(lang, data) {
 		localStorage.setItem(`${lang}Attempts`, JSON.stringify(attempts));
 		localStorage.setItem(`${lang}State`, JSON.stringify(state));
 	}
-	// listening key press
-	for (let i = 0; i < keys.length; i++) {
-		keys[i].onclick = ({ target }) => {
-			const letter = target.getAttribute("data-key");
-			if (
-				row < 6 &&
-				(!state[row - 1] || state[row - 1].join("") !== "XXXXX")
-			) {
+
+	if (row < 6 && !state[row - 1] && state[row - 1].join("") !== "XXXXX") {
+		// listening key press
+		for (let i = 0; i < keys.length; i++) {
+			keys[i].onclick = ({ target }) => {
+				const letter = target.getAttribute("data-key");
+
 				if (letter === ">>") {
 					if (attempts[row].length === 5) {
 						const options = { method: "POST" };
@@ -69,8 +68,10 @@ function gameplay(lang, data) {
 					attempts[row].push(letter);
 					draw(attempts[row], row);
 				}
-			}
-		};
+			};
+		}
+	} else {
+		renderShare(lang, data, state);
 	}
 }
 
@@ -137,11 +138,11 @@ function color(state, attempts) {
 		for (let j = 0; j < state[0].length; j++) {
 			child = wordsOnBoard[i].children[j];
 			key = document.querySelector(`[data-key = "${attempts[i][j]}"]`);
-			child.style.animationDelay = `${(j * (i+1))*100}ms`;
+			child.style.animationDelay = `${j * (i + 1) * 100}ms`;
 			switch (state[i][j]) {
 				case "X":
 					child.classList.add("correct", "used");
-					
+
 					key.classList.add("correct");
 					if (key.classList.contains("contains")) {
 						key.classList.remove("contains");
@@ -175,4 +176,54 @@ function renderAttempts(attempts) {
 			child.children[j].innerHTML = attempts[i][j];
 		}
 	}
+}
+
+function renderShare(lang, data, state) {
+	const shareScreen = document.querySelector(".share-screen");
+	shareScreen.classList.add("active");
+	const drawState = [];
+	let stateDiv = "";
+	let clipboardValue = `Wordle(${lang.toUpperCase()})\n\n`;
+	state.forEach((row) => {
+		drawState.push(
+			row.map((value) => {
+				if (value === "X") {
+					return "🟩";
+				}
+				if (value === "C") {
+					return "🟨";
+				}
+				return "⬛️";
+			})
+		);
+	});
+
+	drawState.forEach((row) => {
+		stateDiv += `<p>${row.join("")}</p>`;
+		clipboardValue += `${row.join("")}\n`;
+	});
+	clipboardValue += "\n#вордли";
+
+	document.querySelector(
+		".popup-heading"
+	).innerHTML = `Wordle(${lang.toUpperCase()})`;
+	document.querySelector(".guessed-word").innerHTML = data.word.toUpperCase();
+	document.querySelector(".state").innerHTML = stateDiv;
+	document
+		.querySelector(".copy-to-clipboard")
+		.addEventListener("click", () =>
+			navigator.clipboard.writeText(clipboardValue)
+		);
+	document.querySelector(".share").addEventListener("click", async () => {
+		try {
+			await navigator.share({ text: `${clipboardValue}` });
+		} catch (err) {
+			console.error(err);
+		}
+	});
+	document
+		.querySelector(".close-share")
+		.addEventListener("click", () =>
+			shareScreen.classList.remove("active")
+		);
 }

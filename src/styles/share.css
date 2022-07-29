@@ -1,0 +1,59 @@
+.share-screen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+	font-family: "Inter";
+}
+
+.share-screen.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.share-screen-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	width: 400px;
+	padding: 25px;
+	text-align: center;
+}
+
+.close-share {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 30px;
+	height: 30px;
+	background: none;
+}
+
+.share,
+.copy-to-clipboard {
+	width: 30px;
+	height: 30px;
+	background: none;
+}
+
+.share-screen p {
+	font-size: 18px;
+}
+
+.popup-heading {
+	margin-bottom: 10px;
+}
+
+.guessed-word {
+	margin-bottom: 5px;
+}
+
+.state {
+	margin-bottom: 10px;
+}

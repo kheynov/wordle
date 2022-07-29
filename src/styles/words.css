@@ -32,23 +32,39 @@
 }
 
 .used {
-	color: #FFF;
+	color: #fff;
 	animation: cellRotate 0.5s linear;
+	animation-fill-mode: forwards;
+}
+
+.used p {
+	animation: textRotate 0.5s linear;
+	animation-fill-mode: forwards;
 }
 
 .contains {
-	background-color: #c8b653;
+	--bgcolor: #c8b653;
 }
 
 .correct {
-	background-color: #6ca965;
+	--bgcolor: #6ca965;
 }
 
 .wrong {
-	background-color: #787c7f;
+	--bgcolor: #787c7f;
 }
 
 @keyframes cellRotate {
+	0% {
+		transform: rotateX(0deg);
+	}
+	100% {
+		transform: rotateX(180deg);
+		background-color: var(--bgcolor);
+	}
+}
+
+@keyframes textRotate {
 	0% {
 		transform: rotateX(0deg);
 	}

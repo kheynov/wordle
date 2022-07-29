@@ -5,14 +5,14 @@
 	width: 100%;
 	height: 100vh;
 	background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    pointer-events: none;
+	opacity: 0;
+	pointer-events: none;
 	font-family: "Inter";
 }
 
 .share-screen.active {
-    opacity: 1;
-    pointer-events: all;
+	opacity: 1;
+	pointer-events: all;
 }
 
 .share-screen-content {

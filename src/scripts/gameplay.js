@@ -49,7 +49,13 @@ function gameplay(lang, data) {
 										state[row - 1].join("") === "XXXXX" ||
 										row > 5
 									) {
-										renderShare(lang, data, state);
+										setTimeout(
+											renderShare,
+											1500,
+											lang,
+											data,
+											state
+										);
 									}
 									attempts.push([]);
 									localStorage.setItem(
@@ -88,7 +94,7 @@ function draw(word, row) {
 
 	for (let i = 0; i < filledWord.length; i++) {
 		child = wordsOnBoard[row].children[i];
-		child.innerHTML = filledWord[i];
+		child.innerHTML = `<p>${filledWord[i]}</p>`;
 	}
 }
 
@@ -139,11 +145,10 @@ function color(state, attempts) {
 		for (let j = 0; j < state[0].length; j++) {
 			child = wordsOnBoard[i].children[j];
 			key = document.querySelector(`[data-key = "${attempts[i][j]}"]`);
-			child.style.animationDelay = `${j * (i + 1) * 100}ms`;
+			child.style.animationDelay = `${j * 250}ms`;
 			switch (state[i][j]) {
 				case "X":
 					child.classList.add("correct", "used");
-
 					key.classList.add("correct");
 					if (key.classList.contains("contains")) {
 						key.classList.remove("contains");
@@ -174,7 +179,7 @@ function renderAttempts(attempts) {
 	for (let i = 0; i < attempts.length - 1; i++) {
 		let child = wordsOnBoard[i];
 		for (let j = 0; j < attempts[0].length; j++) {
-			child.children[j].innerHTML = attempts[i][j];
+			child.children[j].innerHTML = `<p>${attempts[i][j]}</p>`;
 		}
 	}
 }

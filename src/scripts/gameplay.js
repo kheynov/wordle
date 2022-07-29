@@ -21,7 +21,9 @@ function gameplay(lang, data) {
 		localStorage.setItem(`${lang}State`, JSON.stringify(state));
 	}
 
-	if (row < 6 && !state[row - 1] || state[row - 1].join("") !== "XXXXX") {
+	console.log(row);
+
+	if (row < 6 && (!state[row - 1] || state[row - 1].join("") !== "XXXXX")) {
 		// listening key press
 		for (let i = 0; i < keys.length; i++) {
 			keys[i].onclick = ({ target }) => {
@@ -47,10 +49,11 @@ function gameplay(lang, data) {
 										)
 									);
 									color(state, attempts);
-									if (state[row].join("") === "XXXXX" || row + 1 > 6) {
+									row++;
+									console.log(row);
+									if (state[row-1].join("") === "XXXXX" || row > 5) {
 										renderShare(lang, data, state);
 									}
-									row++;
 									attempts.push([]);
 									localStorage.setItem(
 										`${lang}Attempts`,

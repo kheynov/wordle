@@ -9,8 +9,7 @@ function gameplay(lang, data) {
 	let attempts = [[]];
 	let state = [];
 	let row = 0;
-	if (data.word === localStorage.getItem(`${lang}Word`))
-	{
+	if (data.word === localStorage.getItem(`${lang}Word`)) {
 		attempts = JSON.parse(localStorage.getItem(`${lang}Attempts`));
 		state = JSON.parse(localStorage.getItem(`${lang}State`));
 		row = attempts.length - 1;
@@ -18,6 +17,8 @@ function gameplay(lang, data) {
 		color(state, attempts);
 	} else {
 		localStorage.setItem(`${lang}Word`, data.word);
+		localStorage.setItem(`${lang}Attempts`, JSON.stringify(attempts));
+		localStorage.setItem(`${lang}State`, JSON.stringify(state));
 	}
 	// listening key press
 	for (let i = 0; i < keys.length; i++) {
@@ -166,7 +167,7 @@ function color(state, attempts) {
 
 function renderAttempts(attempts) {
 	const wordsOnBoard = document.querySelectorAll(".word");
-	for (let i = 0; i < attempts.length-1; i++) {
+	for (let i = 0; i < attempts.length - 1; i++) {
 		let child = wordsOnBoard[i];
 		for (let j = 0; j < attempts[0].length; j++) {
 			child.children[j].innerHTML = attempts[i][j];

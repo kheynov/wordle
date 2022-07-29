@@ -47,6 +47,9 @@ function gameplay(lang, data) {
 										)
 									);
 									color(state, attempts);
+									if (state[row].join("") === "XXXXX" || row + 1 === 7) {
+										renderShare(lang, data, state);
+									}
 									row++;
 									attempts.push([]);
 									localStorage.setItem(

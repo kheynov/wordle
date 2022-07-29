@@ -21,7 +21,7 @@ function gameplay(lang, data) {
 		localStorage.setItem(`${lang}State`, JSON.stringify(state));
 	}
 
-	if (row < 6 && !state[row - 1] && state[row - 1].join("") !== "XXXXX") {
+	if (row < 6 && !state[row - 1] || state[row - 1].join("") !== "XXXXX") {
 		// listening key press
 		for (let i = 0; i < keys.length; i++) {
 			keys[i].onclick = ({ target }) => {

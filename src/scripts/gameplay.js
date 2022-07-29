@@ -47,7 +47,7 @@ function gameplay(lang, data) {
 										)
 									);
 									color(state, attempts);
-									if (state[row].join("") === "XXXXX" || row + 1 === 7) {
+									if (state[row].join("") === "XXXXX" || row + 1 > 6) {
 										renderShare(lang, data, state);
 									}
 									row++;

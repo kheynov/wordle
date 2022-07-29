@@ -1,3 +1,4 @@
+@import url("./darkmode.css");
 @import url("./header.css");
 @import url("./words.css");
 @import url("./keyboard.css");
@@ -22,23 +23,6 @@ body {
 
 svg {
 	pointer-events: none;
-}
-
-.dark {
-	background-color: #000000;
-	color: #fff;
-}
-
-.dark header svg {
-	color: #fff;
-}
-
-.dark .share-screen-content {
-	background-color: #000000;
-}
-
-.dark .share-screen-content svg {
-	color: #fff;
 }
 
 @font-face {

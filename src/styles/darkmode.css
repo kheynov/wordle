@@ -1,0 +1,20 @@
+.dark {
+	background-color: #27272a;
+	color: #e5e5e5;
+}
+
+.dark button {
+    color: #e5e5e5;
+}
+
+.dark header svg {
+	color: #e5e5e5;
+}
+
+.dark .share-screen-content {
+	background-color: #27272a;
+}
+
+.dark .share-screen-content svg {
+	color: #e5e5e5;
+}

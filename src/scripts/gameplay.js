@@ -29,13 +29,10 @@ function gameplay(lang, data) {
 
 				if (letter === ">>") {
 					if (attempts[row].length === 5) {
-						const options = { method: "POST" };
-
 						fetch(
-							`https://wordle.kheynov.ru/api/word/check?word=${attempts[
+							`http://wordletest.kheynov.ru/api/word/check?word=${attempts[
 								row
-							].join("")}&lang=${lang}`,
-							options
+							].join("")}&lang=${lang}`
 						)
 							.then((response) => response.json())
 							.then((response) => {
@@ -48,7 +45,10 @@ function gameplay(lang, data) {
 									);
 									color(state, attempts);
 									row++;
-									if (state[row-1].join("") === "XXXXX" || row > 5) {
+									if (
+										state[row - 1].join("") === "XXXXX" ||
+										row > 5
+									) {
 										renderShare(lang, data, state);
 									}
 									attempts.push([]);
@@ -93,10 +93,8 @@ function draw(word, row) {
 }
 
 async function getData(lang) {
-	const options = { method: "POST" };
 	const response = await fetch(
-		`https://wordle.kheynov.ru/api/word/get?lang=${lang}`,
-		options
+		`http://wordletest.kheynov.ru/api/word/get?lang=${lang}`
 	);
 	const data = await response.json();
 	return await data;

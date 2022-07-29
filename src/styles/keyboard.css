@@ -24,4 +24,17 @@
 	font-family: "Inter";
 	text-transform: uppercase;
 	user-select: none;
+	background-color: #a3a3a3;
+}
+
+.key.contains {
+	background-color: #c8b653;
+}
+
+.key.correct {
+	background-color: #6ca965;
+}
+
+.key.wrong {
+	background-color: #525252;
 }

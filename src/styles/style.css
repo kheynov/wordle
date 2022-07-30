@@ -3,6 +3,7 @@
 @import url("./words.css");
 @import url("./keyboard.css");
 @import url("./share.css");
+@import url("./incorrect.css");
 
 * {
 	margin: 0;

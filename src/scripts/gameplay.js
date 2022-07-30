@@ -72,6 +72,8 @@ function gameplay(lang, data) {
 										`${lang}State`,
 										JSON.stringify(state)
 									);
+								} else {
+									renderIncorrect(lang);
 								}
 							})
 							.catch((err) => console.error(err));
@@ -238,4 +240,15 @@ function renderShare(lang, data, state) {
 		.addEventListener("click", () =>
 			shareScreen.classList.remove("active")
 		);
+}
+
+function renderIncorrect(lang) {
+	const message = document.querySelector(".incorrect");
+	lang === "ru"
+		? (message.innerHTML = "Слова нет в словаре")
+		: "The word is not in the dictionary";
+	message.classList.add("active");
+	setTimeout(() => {
+		message.classList.remove("active");
+	}, 500);
 }

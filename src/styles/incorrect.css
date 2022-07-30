@@ -1,0 +1,19 @@
+.incorrect {
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+    color: black;
+	padding: 25px;
+	text-align: center;
+    opacity: 0;
+	pointer-events: none;
+	font-family: "Inter";
+    transition: 0.5s all;
+}
+
+.incorrect.active {
+    opacity: 1;
+    transition: 0.5s all;
+}

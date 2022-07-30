@@ -134,14 +134,8 @@ function check(guess, correct) {
 			state[i] = "C";
 		}
 	}
-
-	state.forEach((el) => {
-		if (el === "") {
-			el = "M";
-		}
-	});
-
-	return state;
+	console.log(state.map(el => el === "" ? "M" : el));
+	return state.map(el => el === "" ? "M" : el);
 }
 
 function color(state, attempts) {
@@ -168,7 +162,7 @@ function color(state, attempts) {
 						key.classList.add("contains");
 					}
 					break;
-				case "":
+				case "M":
 					child.classList.add("wrong", "used");
 					if (
 						!key.classList.contains("correct") &&

@@ -21,7 +21,9 @@ function gameplay(lang, data) {
 		localStorage.setItem(`${lang}State`, JSON.stringify(state));
 	}
 
-	if (row < 6 && (!state[row - 1] || state[row - 1].join("") !== "XXXXX")) {
+	let isGameOver = !(row < 6 && (!state[row - 1] || state[row - 1].join("") !== "XXXXX"));
+
+	if (!isGameOver) {
 		// listening key press
 		for (let i = 0; i < keys.length; i++) {
 			keys[i].onclick = ({ target }) => {
@@ -56,6 +58,7 @@ function gameplay(lang, data) {
 											data,
 											state
 										);
+										isGameOver = true;
 									}
 									attempts.push([]);
 									localStorage.setItem(
@@ -73,7 +76,7 @@ function gameplay(lang, data) {
 				} else if (letter === "backspace") {
 					attempts[row].pop();
 					draw(attempts[row], row);
-				} else if (attempts[row].length < 5) {
+				} else if (attempts[row].length < 5 && !isGameOver) {
 					attempts[row].push(letter);
 					draw(attempts[row], row);
 				}

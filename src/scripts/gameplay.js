@@ -149,34 +149,38 @@ function color(state, attempts) {
 	let key;
 	const wordsOnBoard = document.querySelectorAll(".word");
 
-	for (let i = 0; i < state.length && state[i].length === 5; i++) {
-		for (let j = 0; j < state[0].length; j++) {
-			child = wordsOnBoard[i].children[j];
-			key = document.querySelector(`[data-key = "${attempts[i][j]}"]`);
-			child.style.animationDelay = `${j * 250}ms`;
-			switch (state[i][j]) {
-				case "X":
-					child.classList.add("correct", "used");
-					key.classList.add("correct");
-					if (key.classList.contains("contains")) {
-						key.classList.remove("contains");
-					}
-					break;
-				case "C":
-					child.classList.add("contains", "used");
-					if (!key.classList.contains("correct")) {
-						key.classList.add("contains");
-					}
-					break;
-				default:
-					child.classList.add("wrong", "used");
-					if (
-						!key.classList.contains("correct") &&
-						!key.classList.contains("contains")
-					) {
-						key.classList.add("wrong");
-					}
-					break;
+	for (let i = 0; i < state.length; i++) {
+		if (state[i].length === 5) {
+			for (let j = 0; j < state[0].length; j++) {
+				child = wordsOnBoard[i].children[j];
+				key = document.querySelector(
+					`[data-key = "${attempts[i][j]}"]`
+				);
+				child.style.animationDelay = `${j * 250}ms`;
+				switch (state[i][j]) {
+					case "X":
+						child.classList.add("correct", "used");
+						key.classList.add("correct");
+						if (key.classList.contains("contains")) {
+							key.classList.remove("contains");
+						}
+						break;
+					case "C":
+						child.classList.add("contains", "used");
+						if (!key.classList.contains("correct")) {
+							key.classList.add("contains");
+						}
+						break;
+					default:
+						child.classList.add("wrong", "used");
+						if (
+							!key.classList.contains("correct") &&
+							!key.classList.contains("contains")
+						) {
+							key.classList.add("wrong");
+						}
+						break;
+				}
 			}
 		}
 	}

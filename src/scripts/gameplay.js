@@ -9,6 +9,7 @@ function gameplay(lang, data) {
 	let attempts = [[]];
 	let state = [];
 	let row = 0;
+	let canSubmit = true;
 	if (data.word === localStorage.getItem(`${lang}Word`)) {
 		attempts = JSON.parse(localStorage.getItem(`${lang}Attempts`));
 		state = JSON.parse(localStorage.getItem(`${lang}State`));
@@ -34,49 +35,56 @@ function gameplay(lang, data) {
 
 				if (letter === ">>") {
 					if (attempts[row].length === 5) {
-						fetch(
-							`https://wordle.kheynov.ru/api/word/check?word=${attempts[
-								row
-							].join("")}&lang=${lang}`
-						)
-							.then((response) => response.json())
-							.then((response) => {
-								if (response.correct) {
-									state.push(
-										check(
-											attempts[row],
-											data.word.split("")
-										)
-									);
-									color(state, attempts);
-									row++;
-									if (
-										state[row - 1].join("") === "XXXXX" ||
-										row > 5
-									) {
-										setTimeout(
-											renderShare,
-											1500,
-											lang,
-											data,
-											state
+						if (canSubmit) {
+							canSubmit = false;
+							fetch(
+								`https://wordle.kheynov.ru/api/word/check?word=${attempts[
+									row
+								].join("")}&lang=${lang}`
+							)
+								.then((response) => response.json())
+								.then((response) => {
+									if (response.correct) {
+										state.push(
+											check(
+												attempts[row],
+												data.word.split("")
+											)
 										);
-										isGameOver = true;
+										color(state, attempts);
+										row++;
+										if (
+											state[row - 1].join("") ===
+												"XXXXX" ||
+											row > 5
+										) {
+											setTimeout(
+												renderShare,
+												1500,
+												lang,
+												data,
+												state
+											);
+											isGameOver = true;
+										}
+										attempts.push([]);
+										localStorage.setItem(
+											`${lang}Attempts`,
+											JSON.stringify(attempts)
+										);
+										localStorage.setItem(
+											`${lang}State`,
+											JSON.stringify(state)
+										);
+									} else {
+										renderIncorrect(lang);
 									}
-									attempts.push([]);
-									localStorage.setItem(
-										`${lang}Attempts`,
-										JSON.stringify(attempts)
-									);
-									localStorage.setItem(
-										`${lang}State`,
-										JSON.stringify(state)
-									);
-								} else {
-									renderIncorrect(lang);
-								}
-							})
-							.catch((err) => console.error(err));
+								})
+								.then(() => {
+									canSubmit = true;
+								})
+								.catch((err) => console.error(err));
+						}
 					}
 				} else if (letter === "backspace") {
 					attempts[row].pop();
@@ -134,8 +142,7 @@ function check(guess, correct) {
 			state[i] = "C";
 		}
 	}
-	console.log(state.map(el => el === "" ? "M" : el));
-	return state.map(el => el === "" ? "M" : el);
+	return state.map((el) => (el === "" ? "M" : el));
 }
 
 function color(state, attempts) {

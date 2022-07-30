@@ -208,7 +208,7 @@ function renderShare(lang, data, state) {
 		stateDiv += `<p>${row.join("")}</p>`;
 		clipboardValue += `${row.join("")}\n`;
 	});
-	clipboardValue += "\n#вордли";
+	clipboardValue += "\n#вордли\nhttps://wordle.kheynov.ru/";
 
 	document.querySelector(
 		".popup-heading"

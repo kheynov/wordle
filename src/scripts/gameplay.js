@@ -149,7 +149,7 @@ function color(state, attempts) {
 	let key;
 	const wordsOnBoard = document.querySelectorAll(".word");
 
-	for (let i = 0; i < state.length; i++) {
+	for (let i = 0; i < state.length && state[i].length === 5; i++) {
 		for (let j = 0; j < state[0].length; j++) {
 			child = wordsOnBoard[i].children[j];
 			key = document.querySelector(`[data-key = "${attempts[i][j]}"]`);

@@ -57,3 +57,17 @@
 .state {
 	margin-bottom: 10px;
 }
+
+.android-logo {
+	width: 30px;
+	height: 30px;
+}
+
+.credits {
+	margin-top: 10px;
+}
+
+a {
+	color: #1d4ed8;
+	text-decoration: none;
+}

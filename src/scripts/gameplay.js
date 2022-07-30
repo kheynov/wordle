@@ -21,7 +21,10 @@ function gameplay(lang, data) {
 		localStorage.setItem(`${lang}State`, JSON.stringify(state));
 	}
 
-	let isGameOver = !(row < 6 && (!state[row - 1] || state[row - 1].join("") !== "XXXXX"));
+	let isGameOver = !(
+		row < 6 &&
+		(!state[row - 1] || state[row - 1].join("") !== "XXXXX")
+	);
 
 	if (!isGameOver) {
 		// listening key press

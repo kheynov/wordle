@@ -3,7 +3,7 @@
 	justify-items: center;
 	align-items: center;
 	margin-top: 30px;
-	height: 200px;
+	height: 20vh;
 }
 
 .keyboard-line {
@@ -12,6 +12,7 @@
 	width: 100%;
 	margin: 0 auto 8px;
 	touch-action: manipulation;
+	justify-items: stretch;
 }
 
 .key {

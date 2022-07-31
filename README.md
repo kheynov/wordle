@@ -1,2 +1,2 @@
-# wordle
-Web wordle for http://wordle.kheynov.ru/
+# WORDLE
+Wordle for http://wordle.kheynov.ru/

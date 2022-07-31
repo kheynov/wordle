@@ -201,7 +201,9 @@ function renderShare(lang, data, state) {
 	shareScreen.classList.add("active");
 	const drawState = [];
 	let stateDiv = "";
-	let clipboardValue = `Wordle(${lang.toUpperCase()})\n\n`;
+	let clipboardValue = `Wordle(${lang.toUpperCase()}) ${
+		state[state.length - 1].join("") === "XXXXX" ? state.length : "X"
+	}/6\n\n`;
 	state.forEach((row) => {
 		drawState.push(
 			row.map((value) => {

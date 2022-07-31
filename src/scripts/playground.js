@@ -42,7 +42,7 @@ function renderCells() {
 	}
 	cells.innerHTML = rows;
 	const keyboardHeight = document.querySelector("#keyboard").clientHeight;
-	cells.style.margin = `min(calc(100vh - 3rem - ${50 + keyboardHeight + cells.clientHeight}px) / 2, 50px) 0`;
+	cells.style.margin = `min(calc(95vh - 3rem - ${50 + keyboardHeight + cells.clientHeight}px) / 2, 50px) 0`;
 	console.log(keyboardHeight);
 }
 

@@ -36,7 +36,50 @@ function gameplay(lang, data) {
 				if (letter === ">>") {
 					if (attempts[row].length === 5 && canSubmit) {
 						canSubmit = false;
-						pressEnter(attempts, row, state, data, lang, canSubmit, isGameOver);
+						fetch(
+							`https://wordle.kheynov.ru/api/word/check?word=${attempts[
+								row
+							].join("")}&lang=${lang}`
+						)
+							.then((response) => response.json())
+							.then((response) => {
+								if (response.correct) {
+									state.push(
+										check(
+											attempts[row],
+											data.word.split("")
+										)
+									);
+									color(state, attempts);
+									row++;
+									if (
+										state[row - 1].join("") === "XXXXX" ||
+										row > 5
+									) {
+										setTimeout(
+											renderShare,
+											1500,
+											lang,
+											data,
+											state
+										);
+										isGameOver = true;
+									}
+									attempts.push([]);
+									localStorage.setItem(
+										`${lang}Attempts`,
+										JSON.stringify(attempts)
+									);
+									localStorage.setItem(
+										`${lang}State`,
+										JSON.stringify(state)
+									);
+								} else {
+									renderIncorrect(lang);
+								}
+							})
+							.then(() => (canSubmit = true))
+							.catch((err) => console.error(err));
 					}
 				} else if (letter === "backspace") {
 					attempts[row].pop();
@@ -202,33 +245,11 @@ function renderShare(lang, data, state) {
 
 function renderIncorrect(lang) {
 	const message = document.querySelector(".incorrect");
-	lang === "ru" ? (message.innerHTML = "Слова нет в словаре") : (message.innerHTML = "The word is not in the dictionary");
+	lang === "ru"
+		? (message.innerHTML = "Слова нет в словаре")
+		: (message.innerHTML = "The word is not in the dictionary");
 	message.classList.add("active");
 	setTimeout(() => {
 		message.classList.remove("active");
 	}, 500);
-}
-
-function pressEnter(attempts, row, state, data, lang, canSubmit, isGameOver) {
-	fetch(`https://wordle.kheynov.ru/api/word/check?word=${attempts[row].join("")}&lang=${lang}`)
-		.then((response) => response.json())
-		.then((response) => {
-			if (response.correct) {
-				state.push(check(attempts[row], data.word.split("")));
-				color(state, attempts);
-				row++;
-				if (state[row - 1].join("") === "XXXXX" || row > 5) {
-					setTimeout(renderShare, 1500, lang, data, state);
-					isGameOver = true;
-				}
-				attempts.push([]);
-				localStorage.setItem(`${lang}Attempts`, JSON.stringify(attempts));
-				localStorage.setItem(`${lang}State`, JSON.stringify(state));
-			} else {
-				renderIncorrect(lang);
-			}
-		})
-		.then(() => canSubmit = true)
-		.catch((err) => console.error(err));
-	console.log(isGameOver);
 }

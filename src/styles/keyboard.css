@@ -1,26 +1,23 @@
 #keyboard {
-	justify-content: space-between;
-	justify-items: center;
+	flex-direction: column;
 	align-items: center;
-	flex-shrink: 0;
 }
 
 .keyboard-line {
 	display: flex;
-	justify-content: center;
-	width: 100%;
 	margin: 0 auto 8px;
-	touch-action: manipulation;
-	justify-items: stretch;
+	justify-content: center;
 }
 
 .key {
+	align-self: stretch;
 	min-width: 22px;
 	min-height: 44px;
-	padding: 0;
-	margin: 2.5px;
+	margin: 1.75px;
+	padding: 0.5rem;
 	border-radius: 5px;
 	font-weight: 700;
+	font-size: 1rem;
 	font-family: "Inter";
 	text-transform: uppercase;
 	background-color: #a3a3a3;
@@ -36,4 +33,8 @@
 
 .key.wrong {
 	background-color: #525252;
+}
+
+#backspace {
+	min-width: 36px;
 }

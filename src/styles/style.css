@@ -19,7 +19,7 @@ body {
 }
 
 #app {
-	height: calc(100vh - 3rem);
+	height: calc(95vh - 3rem);
 	width: 480px;
 }
 

@@ -252,7 +252,7 @@ function renderIncorrect(lang) {
 	const message = document.querySelector(".incorrect");
 	lang === "ru"
 		? (message.innerHTML = "Слова нет в словаре")
-		: "The word is not in the dictionary";
+		: (message.innerHTML = "The word is not in the dictionary");
 	message.classList.add("active");
 	setTimeout(() => {
 		message.classList.remove("active");

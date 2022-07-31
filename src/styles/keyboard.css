@@ -7,7 +7,6 @@
 	display: flex;
 	margin: 0 auto 8px;
 	justify-content: center;
-	width: 98%;
 }
 
 .key {
@@ -15,7 +14,7 @@
 	min-width: 22px;
 	min-height: 44px;
 	margin: 1.75px;
-	padding: 0.5rem;
+	padding: 0.45rem;
 	border-radius: 5px;
 	font-weight: 700;
 	font-size: 1rem;

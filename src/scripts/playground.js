@@ -41,11 +41,13 @@ function renderCells() {
 		rows += row;
 	}
 	cells.innerHTML = rows;
+	const keyboardHeight = document.querySelector("#keyboard").clientHeight;
+	cells.style.margin = `min(calc(100vh - 3rem - ${50 + keyboardHeight + cells.clientHeight}px) / 2, 50px) 0`;
+	console.log(keyboardHeight);
 }
 
 export function render(lang = "ru") {
 	const heading = document.querySelector("h1");
-	renderCells();
 	if (lang === "ru") {
 		heading.innerHTML = "Wordle(RU)";
 		renderKeyboard(ruKeyboard);
@@ -56,6 +58,7 @@ export function render(lang = "ru") {
 	Number(localStorage.getItem("colorTheme"))
 		? (document.body.className = "light")
 		: (document.body.className = "dark");
+	renderCells();
 }
 
 export function setTheme() {

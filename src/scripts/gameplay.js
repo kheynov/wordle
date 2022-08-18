@@ -157,6 +157,9 @@ function color(state, attempts) {
 					if (key.classList.contains("contains")) {
 						key.classList.remove("contains");
 					}
+					if (key.classList.contains("wrong")) {
+						key.classList.remove("wrong");
+					}
 					break;
 				case "C":
 					child.classList.add("contains", "used");

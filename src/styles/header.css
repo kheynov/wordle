@@ -18,6 +18,7 @@ button {
 	border: none;
 	cursor: pointer;
 	user-select: none;
+	touch-action: manipulation;
 }
 
 #change-lang {

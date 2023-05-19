@@ -37,7 +37,7 @@ function gameplay(lang, data) {
 					if (attempts[row].length === 5 && canSubmit) {
 						canSubmit = false;
 						fetch(
-							`https://wordle.kheynov.ru/api/word/check?word=${attempts[
+							`https://api.wordle.kheynov.ru/api/word/check?word=${attempts[
 								row
 							].join("")}&lang=${lang}`
 						)
@@ -111,7 +111,7 @@ function draw(word, row) {
 
 async function getData(lang) {
 	const response = await fetch(
-		`https://wordle.kheynov.ru/api/word/get?lang=${lang}`
+		`https://api.wordle.kheynov.ru/api/word/get?lang=${lang}`
 	);
 	const data = await response.json();
 	return await data;
